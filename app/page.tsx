@@ -98,7 +98,15 @@ export default function PavageInterCiteSite() {
         <section className="relative isolate overflow-hidden bg-zinc-950 pt-28 text-white md:pt-36">
           <div className="absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(245,158,11,0.22),transparent_34%),linear-gradient(90deg,rgba(9,9,11,0.98),rgba(9,9,11,0.84),rgba(9,9,11,0.55))]" />
-            <div className="absolute inset-y-0 right-0 w-full bg-[url('/images/pavage4.jpg')] bg-cover bg-center opacity-35" />
+            <video
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="absolute inset-0 h-full w-full object-cover opacity-35"
+>
+  <source src="/videos/pavagevideo.mp4" type="video/mp4" />
+</video>
           </div>
 
           <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-10 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-28">
