@@ -220,10 +220,10 @@ export default function PavageInterCiteSite() {
 <div className="mt-8 space-y-4">
 <a
   href={company.phoneHref}
-  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-lg font-normal hover:bg-white/10"
+  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300 hover:bg-white/10"
 >
   <span className="w-6 text-center">☎️</span>
-  <span>{company.phone}</span>
+  <span className="text-base"> {company.phone}</span>
 </a>
 
   <a
