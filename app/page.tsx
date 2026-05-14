@@ -217,24 +217,29 @@ export default function PavageInterCiteSite() {
             <div>
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-amber-400">Soumission gratuite</p>
               <h2 className="text-4xl font-black tracking-tight md:text-5xl">Réservez votre projet maintenant.</h2>
-              <p className="mt-6 text-lg leading-8 text-zinc-300">
-              </p>
-              <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300">
-  <span className="w-6 text-center">☎️</span>
-  <span>{company.phone}</span>
-</div>
-                <a
-  href="https://maps.google.com/?q=485+Rue+de+Vernon+Gatineau+QC+J9J+3K4"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300 transition hover:text-amber-400"
->
-  <span className="w-6 text-center">📍</span>
-  <span>{company.address}</span>
-</a>
-                <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300">
-  <span className="w-6 text-center">🕒</span>
-  <span>Lundi au vendredi, 7 h à 17 h</span>
+<div className="mt-8 space-y-4">
+  <a
+    href={company.phoneHref}
+    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-lg font-black hover:bg-white/10"
+  >
+    <span className="w-6 text-center">☎️</span>
+    <span>{company.phone}</span>
+  </a>
+
+  <a
+    href="https://maps.google.com/?q=485+Rue+de+Vernon+Gatineau+QC+J9J+3K4"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300 transition hover:text-amber-400"
+  >
+    <span className="w-6 text-center">📍</span>
+    <span>{company.address}</span>
+  </a>
+
+  <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300">
+    <span className="w-6 text-center">🕒</span>
+    <span>Lundi au vendredi, 7 h à 17 h</span>
+  </div>
 </div>
 
             <form className="rounded-[2rem] border border-white/10 bg-white p-4 text-zinc-950 shadow-2xl md:p-8">
