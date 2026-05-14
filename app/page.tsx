@@ -39,7 +39,15 @@ const reviews = [
   ["Reggy Dubourg", "It a good commercial paving company."],
 ];
 
-function SectionHeader({ eyebrow, title, text }) {
+function SectionHeader({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow: React.ReactNode;
+  title: string;
+  text?: string;
+}) {
   return (
     <div className="mx-auto mb-10 max-w-3xl text-center">
       <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-amber-500">{eyebrow}</p>
