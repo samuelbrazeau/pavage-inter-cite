@@ -260,8 +260,13 @@ export default function PavageInterCiteSite() {
   ▼
 </div>
                 </div></label>
-                <label className="block md:col-span-2"><span className="mb-2 block text-sm font-bold">Message</span><textarea className="min-h-32 w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none focus:border-amber-500" placeholder="Décrivez brièvement votre projet." /></label>
-              </div>
+<label className="block md:col-span-2">
+  <span className="mb-2 block text-sm font-bold">Message</span>
+  <textarea
+    className="min-h-32 w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none focus:border-amber-500"
+    placeholder="Décrivez brièvement votre projet."
+  />
+</label>              </div>
               <button type="button" className="mt-5 w-full rounded-full bg-amber-500 px-6 py-4 text-sm font-black uppercase tracking-wide text-white hover:bg-amber-600">
                 Envoyer la demande →
               </button>
