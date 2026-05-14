@@ -83,12 +83,41 @@ export default function PavageInterCiteSite() {
             <a href="#contact" className="hover:text-white">Contact</a>
           </nav>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <a href={company.phoneHref} className="rounded-full border border-white/15 px-4 py-3 text-sm font-bold text-white hover:bg-white/10">
-              ☎️ {company.phone}
-            </a>
-            <a href="#soumission" className="rounded-full bg-amber-500 px-5 py-3 text-sm font-extrabold text-white hover:bg-amber-600">Soumission gratuite</a>
-          </div>
+<div className="hidden items-center gap-4 md:flex">
+
+  <div className="flex items-center gap-2">
+    <a
+      href="/"
+      className="text-sm font-bold text-white hover:text-amber-400"
+    >
+      FR
+    </a>
+
+    <span className="text-zinc-500">|</span>
+
+    <a
+      href="/en"
+      className="text-sm font-bold text-white hover:text-amber-400"
+    >
+      EN
+    </a>
+  </div>
+
+  <a
+    href={company.phoneHref}
+    className="rounded-full border border-white/15 px-4 py-3 text-sm font-bold text-white hover:bg-white/10"
+  >
+    ☎️ {company.phone}
+  </a>
+
+  <a
+    href="#soumission"
+    className="rounded-full bg-amber-500 px-5 py-3 text-sm font-extrabold text-white hover:bg-amber-600"
+  >
+    Soumission gratuite
+  </a>
+
+</div>
 
           <a href={company.phoneHref} className="rounded-full bg-amber-500 px-4 py-3 text-sm font-black text-white md:hidden">Appeler</a>
         </div>
