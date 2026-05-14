@@ -164,7 +164,7 @@ export default function PavageInterCiteSite() {
               title="Des surfaces propres, solides et prêtes à utiliser"            />
             <div className="grid gap-5 md:grid-cols-3">
               {[
-                "/images/pavage1.jpg",
+                "/images/pavage5.jpg",
                 "/images/pavage2.jpg",
                 "/images/pavage3.jpg",
               ].map((src, i) => (
