@@ -85,7 +85,7 @@ export default function PavageInterCiteSite() {
 
           <div className="hidden items-center gap-3 md:flex">
             <a href={company.phoneHref} className="rounded-full border border-white/15 px-4 py-3 text-sm font-bold text-white hover:bg-white/10">
-              ☎ {company.phone}
+              ☎️ {company.phone}
             </a>
             <a href="#soumission" className="rounded-full bg-amber-500 px-5 py-3 text-sm font-extrabold text-white hover:bg-amber-600">Soumission gratuite</a>
           </div>
@@ -218,13 +218,13 @@ export default function PavageInterCiteSite() {
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-amber-400">Soumission gratuite</p>
               <h2 className="text-4xl font-black tracking-tight md:text-5xl">Réservez votre projet maintenant.</h2>
 <div className="mt-8 space-y-4">
-  <a
-    href={company.phoneHref}
-    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-lg font-black hover:bg-white/10"
-  >
-    <span className="w-6 text-center">☎️</span>
-    <span>{company.phone}</span>
-  </a>
+<a
+  href={company.phoneHref}
+  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-lg font-normal hover:bg-white/10"
+>
+  <span className="w-6 text-center">☎️</span>
+  <span>{company.phone}</span>
+</a>
 
   <a
     href="https://maps.google.com/?q=485+Rue+de+Vernon+Gatineau+QC+J9J+3K4"
