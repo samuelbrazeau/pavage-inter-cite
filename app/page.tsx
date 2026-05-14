@@ -241,6 +241,7 @@ export default function PavageInterCiteSite() {
     <span>Lundi au vendredi, 7 h à 17 h</span>
   </div>
 </div>
+</div>
 
             <form className="rounded-[2rem] border border-white/10 bg-white p-4 text-zinc-950 shadow-2xl md:p-8">
               <div className="grid gap-4 md:grid-cols-2">
