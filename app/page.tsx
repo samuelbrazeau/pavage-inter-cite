@@ -256,7 +256,7 @@ export default function PavageInterCiteSite() {
                     <option>Scellant / fissures</option>
                     <option>Autre projet</option>
                   </select>
-                  <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-black">
+<div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-black">
   ▼
 </div>
                 </div></label>
