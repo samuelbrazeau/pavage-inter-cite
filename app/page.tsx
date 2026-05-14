@@ -223,7 +223,14 @@ export default function PavageInterCiteSite() {
                 <a href={company.phoneHref} className="block rounded-2xl border border-white/10 bg-white/5 p-4 text-lg font-black hover:bg-white/10">
                   ☎ {company.phone}
                 </a>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300">📍 {company.address}</div>
+                <a
+  href="https://maps.google.com/?q=485+Rue+de+Vernon+Gatineau+QC+J9J+3K4"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300 transition hover:text-amber-400"
+>
+  {company.address}
+</a>
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300">🕒 Lundi au vendredi, 7 h à 17 h</div>
               </div>
             </div>
