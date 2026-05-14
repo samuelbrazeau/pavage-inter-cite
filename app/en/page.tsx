@@ -8,26 +8,35 @@ const company = {
 };
 
 const services = [
-  ["Residential paving", "Clean, durable asphalt driveways built for the Outaouais climate."],
+  ["Residential paving", "Clean, durable asphalt driveways adapted to the Outaouais climate."],
   ["Commercial paving", "Parking lots, commercial access roads and surfaces designed for heavy use."],
-  ["Asphalt repair", "Repair of damaged areas, potholes, sinking spots and worn surfaces."],
+  ["Asphalt repair", "Correction of damaged areas, potholes, sinking and worn surfaces."],
   ["Resurfacing", "Restore a clean and uniform surface to existing asphalt whenever possible."],
-  ["Parking lots", "Preparation, grading and paving for residential or commercial parking lots."],
-  ["Sealcoating & crack repair", "Preventive protection to extend the lifespan of your asphalt."],
+  ["Parking lots", "Preparation, grading and paving of residential or commercial parking lots."],
+  ["Sealcoating and cracks", "Preventive protection to extend the life of your asphalt."],
+];
+
+const trustItems = [
+  "Local company in Outaouais",
+  "Fast quote",
+  "Professional equipment",
+  "Residential and commercial work",
+  "Direct and simple service",
+  "Clean and durable finish",
 ];
 
 const steps = [
   "Quick contact",
   "Free evaluation",
-  "Detailed estimate",
+  "Detailed quote",
   "Project completion",
-  "Long-lasting results",
+  "Durable result",
 ];
 
 const reviews = [
-  ["Alexandre Gaudette", "Excellent service very organize good quality."],
-  ["Maurice Basstrap 2MM", "Les chauffeurs de semi-remorque ont une conduite remarquable et une courtoisie remarquable avec un professionnalisme à son meilleur."],
-  ["Reggy Dubourg", "It a good commercial paving company."],
+  ["Alexandre Gaudette", "Excellent service, very organized, good quality."],
+  ["Maurice Basstrap 2MM", "The semi-truck drivers show remarkable driving skills and courtesy, with top-level professionalism."],
+  ["Reggy Dubourg", "It is a good commercial paving company."],
 ];
 
 function SectionHeader({
@@ -58,53 +67,87 @@ function Logo() {
   );
 }
 
-export default function PavageInterCiteEnglishSite() {
+export default function PavageInterCiteSite() {
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-950">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
-          <a href="#home">
+          <a href="#accueil">
             <Logo />
           </a>
 
           <nav className="hidden items-center gap-7 text-lg font-semibold text-zinc-300 lg:flex">
             <a href="#services" className="hover:text-white">Services</a>
-            <a href="#projects" className="hover:text-white">Projects</a>
-            <a href="#process" className="hover:text-white">Process</a>
+            <a href="#realisations" className="hover:text-white">Projects</a>
+            <a href="#processus" className="hover:text-white">Process</a>
             <a href="#contact" className="hover:text-white">Contact</a>
-            <a href="/" className="hover:text-white">FR</a>
           </nav>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <a href={company.phoneHref} className="rounded-full border border-white/15 px-4 py-3 text-sm font-bold text-white hover:bg-white/10">
+          <div className="hidden items-center gap-4 md:flex">
+            <div className="flex items-center gap-2">
+              <a
+                href="/"
+                className="text-sm font-bold text-white hover:text-amber-400"
+              >
+                FR
+              </a>
+
+              <span className="text-zinc-500">|</span>
+
+              <a
+                href="/en"
+                className="text-sm font-bold text-white hover:text-amber-400"
+              >
+                EN
+              </a>
+            </div>
+
+            <a
+              href={company.phoneHref}
+              className="rounded-full border border-white/15 px-4 py-3 text-sm font-bold text-white hover:bg-white/10"
+            >
               ☎️ {company.phone}
             </a>
-            <a href="#quote" className="rounded-full bg-amber-500 px-5 py-3 text-sm font-extrabold text-white hover:bg-amber-600">Free quote</a>
+
+            <a
+              href="#soumission"
+              className="rounded-full bg-amber-500 px-5 py-3 text-sm font-extrabold text-white hover:bg-amber-600"
+            >
+              Free quote
+            </a>
           </div>
 
           <a href={company.phoneHref} className="rounded-full bg-amber-500 px-4 py-3 text-sm font-black text-white md:hidden">Call</a>
         </div>
       </header>
 
-      <main id="home">
+      <main id="accueil">
         <section className="relative isolate overflow-hidden bg-zinc-950 pt-28 text-white md:pt-36">
           <div className="absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(245,158,11,0.22),transparent_34%),linear-gradient(90deg,rgba(9,9,11,0.98),rgba(9,9,11,0.84),rgba(9,9,11,0.55))]" />
-            <div className="absolute inset-y-0 right-0 w-full bg-[url('/images/pavage4.jpg')] bg-cover bg-center opacity-35" />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover opacity-35"
+            >
+              <source src="/videos/pavagevideo.mp4" type="video/mp4" />
+            </video>
           </div>
 
           <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-10 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-28">
             <div>
               <h1 className="max-w-4xl text-5xl font-black leading-[0.98] tracking-tight md:text-7xl">
-                Paving built to last, clean finish, local service.
+                Durable paving, clean finish, local service.
               </h1>
 
               <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-300 md:text-xl">
-                Residential and commercial paving in Gatineau and throughout the Outaouais region.
+                Residential and commercial paving in Gatineau and across Outaouais.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#quote" className="inline-flex items-center justify-center rounded-full bg-amber-500 px-6 py-4 text-sm font-extrabold uppercase tracking-wide text-white shadow-xl shadow-amber-500/20 transition hover:bg-amber-600">
+                <a href="#soumission" className="inline-flex items-center justify-center rounded-full bg-amber-500 px-6 py-4 text-sm font-extrabold uppercase tracking-wide text-white shadow-xl shadow-amber-500/20 transition hover:bg-amber-600">
                   Request a quote →
                 </a>
 
@@ -124,16 +167,15 @@ export default function PavageInterCiteEnglishSite() {
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <SectionHeader
               eyebrow="Services"
-              title="Everything you need for your asphalt project"
+              title="Everything you need for your asphalt work"
             />
-
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {services.map(([title, text], index) => (
                 <div key={title} className="group rounded-[2rem] border border-zinc-200 bg-zinc-50 p-7 transition hover:border-amber-200 hover:bg-white hover:shadow-xl">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500 text-lg font-black text-white shadow-lg shadow-amber-500/20">{index + 1}</div>
                   <h3 className="mt-6 text-xl font-black">{title}</h3>
                   <p className="mt-3 min-h-[84px] leading-7 text-zinc-600">{text}</p>
-                  <a href="#quote" className="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-amber-500">
+                  <a href="#soumission" className="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase tracking-wide text-amber-500">
                     Learn more →
                   </a>
                 </div>
@@ -142,34 +184,32 @@ export default function PavageInterCiteEnglishSite() {
           </div>
         </section>
 
-        <section id="projects" className="py-16 md:py-24">
+        <section id="realisations" className="py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <SectionHeader
               eyebrow="Projects"
               title="Clean, solid surfaces ready to use"
             />
-
             <div className="grid gap-5 md:grid-cols-3">
               {[
-                "/images/pavage1.jpg",
+                "/images/pavage5.jpg",
                 "/images/pavage2.jpg",
                 "/images/pavage3.jpg",
               ].map((src, i) => (
                 <div key={src} className={`group aspect-[4/3] overflow-hidden rounded-[2rem] bg-zinc-200 ${i === 1 ? "md:mt-10" : ""}`}>
-                  <img src={src} alt="Paving project" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <img src={src} alt="Paving project" className="h-80 w-full object-cover transition duration-500 group-hover:scale-105" />
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="process" className="bg-white py-16 md:py-24">
+        <section id="processus" className="bg-white py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <SectionHeader
               eyebrow="Process"
               title="Simple from the first call to the final result"
             />
-
             <div className="grid gap-4 md:grid-cols-5">
               {steps.map((step, index) => (
                 <div key={step} className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50 p-6">
@@ -195,9 +235,8 @@ export default function PavageInterCiteEnglishSite() {
                   Customer reviews
                 </a>
               }
-              title="A local reputation built on quality work"
+              title="A local reputation to strengthen"
             />
-
             <div className="grid gap-5 md:grid-cols-3">
               {reviews.map(([name, text]) => (
                 <div key={name} className="rounded-[2rem] border border-zinc-200 bg-white p-7 shadow-sm">
@@ -210,19 +249,18 @@ export default function PavageInterCiteEnglishSite() {
           </div>
         </section>
 
-        <section id="quote" className="bg-zinc-950 py-16 text-white md:py-24">
+        <section id="soumission" className="bg-zinc-950 py-16 text-white md:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 md:px-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-amber-400">Free quote</p>
-              <h2 className="text-4xl font-black tracking-tight md:text-5xl">Book your project today.</h2>
-
+              <h2 className="text-4xl font-black tracking-tight md:text-5xl">Book your project now.</h2>
               <div className="mt-8 space-y-4">
                 <a
                   href={company.phoneHref}
                   className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-zinc-300 hover:bg-white/10"
                 >
                   <span className="w-6 text-center">☎️</span>
-                  <span>{company.phone}</span>
+                  <span className="text-base"> {company.phone}</span>
                 </a>
 
                 <a
@@ -248,23 +286,18 @@ export default function PavageInterCiteEnglishSite() {
                 <label className="block"><span className="mb-2 block text-sm font-bold">Phone</span><input className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none focus:border-amber-500" placeholder="(819) 000-0000" /></label>
                 <label className="block"><span className="mb-2 block text-sm font-bold">Email</span><input className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none focus:border-amber-500" placeholder="email@example.com" /></label>
                 <label className="block"><span className="mb-2 block text-sm font-bold">City</span><input className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none focus:border-amber-500" placeholder="Gatineau, Aylmer, Hull..." /></label>
-
-                <label className="block md:col-span-2">
-                  <span className="mb-2 block text-sm font-bold">Project type</span>
-                  <div className="relative">
-                    <select className="w-full appearance-none rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 pr-12 outline-none focus:border-amber-500">
-                      <option>Residential driveway</option>
-                      <option>Commercial parking lot</option>
-                      <option>Asphalt repair</option>
-                      <option>Sealcoating / cracks</option>
-                      <option>Other project</option>
-                    </select>
-                    <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-black">
-                      ▼
-                    </div>
+                <label className="block md:col-span-2"><span className="mb-2 block text-sm font-bold">Project type</span><div className="relative">
+                  <select className="w-full appearance-none rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 pr-12 outline-none focus:border-amber-500">
+                    <option>Residential driveway</option>
+                    <option>Commercial parking lot</option>
+                    <option>Asphalt repair</option>
+                    <option>Sealcoating / cracks</option>
+                    <option>Other project</option>
+                  </select>
+                  <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-black">
+                    ▼
                   </div>
-                </label>
-
+                </div></label>
                 <label className="block md:col-span-2">
                   <span className="mb-2 block text-sm font-bold">Message</span>
                   <textarea
@@ -273,17 +306,14 @@ export default function PavageInterCiteEnglishSite() {
                   />
                 </label>
               </div>
-
               <button type="button" className="mt-5 w-full rounded-full bg-amber-500 px-6 py-4 text-sm font-black uppercase tracking-wide text-white hover:bg-amber-600">
                 Send request →
               </button>
-
-              <p className="mt-4 text-center text-sm text-zinc-500">Quick response during business hours.</p>
+              <p className="mt-4 text-center text-sm text-zinc-500">Fast response during business hours.</p>
             </form>
           </div>
         </section>
       </main>
-
       <footer id="contact" className="bg-black py-4 text-white">
         <div className="mx-auto grid max-w-7xl gap-2 px-4 md:grid-cols-4 md:px-8">
           <div className="md:col-span-2">
@@ -291,24 +321,13 @@ export default function PavageInterCiteEnglishSite() {
               <Logo />
             </div>
           </div>
-
           <div>
             <p className="mb-4 font-black">Contact information</p>
-            <div className="space-y-3 text-sm text-zinc-400">
-              <p>{company.phone}</p>
-              <p>{company.address}</p>
-              <p>Gatineau · Outaouais</p>
-            </div>
+            <div className="space-y-3 text-sm text-zinc-400"><p>{company.phone}</p><p>{company.address}</p><p>Gatineau · Outaouais</p></div>
           </div>
-
           <div>
             <p className="mb-4 font-black">Quick links</p>
-            <div className="space-y-3 text-sm text-zinc-400">
-              <p><a href="#services" className="hover:text-white">Services</a></p>
-              <p><a href="#projects" className="hover:text-white">Projects</a></p>
-              <p><a href="#quote" className="hover:text-white">Free quote</a></p>
-              <p><a href="/" className="hover:text-white">Français</a></p>
-            </div>
+            <div className="space-y-3 text-sm text-zinc-400"><p><a href="#services" className="hover:text-white">Services</a></p><p><a href="#realisations" className="hover:text-white">Projects</a></p><p><a href="#soumission" className="hover:text-white">Free quote</a></p></div>
           </div>
         </div>
       </footer>
