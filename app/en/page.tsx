@@ -116,7 +116,15 @@ export default function PavageInterCiteSite() {
               Free quote
             </a>
           </div>
-
+<div className="flex items-center gap-2 md:hidden">
+  <a href="/" className="text-sm font-bold text-white hover:text-amber-400">
+    FR
+  </a>
+  <span className="text-zinc-500">|</span>
+  <a href="/en" className="text-sm font-bold text-white hover:text-amber-400">
+    EN
+  </a>
+</div>
           <a href={company.phoneHref} className="rounded-full bg-amber-500 px-4 py-3 text-sm font-black text-white md:hidden">Call</a>
         </div>
       </header>
