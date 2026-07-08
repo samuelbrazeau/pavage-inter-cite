@@ -26,11 +26,11 @@ const trustItems = [
 ];
 
 const steps = [
-  "Contact rapide",
-  "Évaluation gratuite",
-  "Soumission détaillée",
-  "Réalisation des travaux",
-  "Résultat durable",
+  { titre: "Contact rapide", texte: "Appelez-nous ou remplissez le formulaire, on vous répond dans les 24 heures." },
+  { titre: "Évaluation gratuite", texte: "On se déplace sur place pour évaluer votre projet, sans frais ni engagement." },
+  { titre: "Soumission détaillée", texte: "Vous recevez un prix ferme par écrit, sans surprise ni frais cachés." },
+  { titre: "Réalisation des travaux", texte: "Notre équipe exécute les travaux à la date convenue, avec de l'équipement professionnel." },
+  { titre: "Résultat durable", texte: "Un pavage fait pour durer, avec des conseils d'entretien pour protéger votre investissement." },
 ];
 
 const reviews = [
@@ -222,8 +222,8 @@ export default function PavageInterCiteSite() {
               {steps.map((step, index) => (
                 <div key={step} className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50 p-6">
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 text-lg font-black text-white">{index + 1}</div>
-                  <h3 className="font-black">{step}</h3>
-                  <p className="mt-3 text-sm leading-6 text-zinc-600">Une étape claire pour garder le projet simple et prévisible.</p>
+                  <h3 className="font-black">{step.titre}</h3>
+                  <p className="mt-3 text-sm leading-6 text-zinc-600">{step.texte}</p>
                 </div>
               ))}
             </div>
