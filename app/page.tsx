@@ -220,7 +220,7 @@ export default function PavageInterCiteSite() {
               title="Simple du premier appel au résultat final"            />
             <div className="grid gap-4 md:grid-cols-5">
               {steps.map((step, index) => (
-                <div key={step} className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50 p-6">
+                <div key={step.titre} className="rounded-[1.75rem] border border-zinc-200 bg-zinc-50 p-6">
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 text-lg font-black text-white">{index + 1}</div>
                   <h3 className="font-black">{step.titre}</h3>
                   <p className="mt-3 text-sm leading-6 text-zinc-600">{step.texte}</p>
@@ -243,7 +243,7 @@ export default function PavageInterCiteSite() {
       Avis clients
     </a>
   }
-  title="Une réputation locale à renforcer"
+  title="Ce que nos clients disent"
 />
             <div className="grid gap-5 md:grid-cols-3">
               {reviews.map(([name, text]) => (
