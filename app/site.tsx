@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+/* Clé Web3Forms : colle ici la clé reçue par courriel depuis web3forms.com */
+const WEB3FORMS_KEY = "6ffc0d4b-3943-47f0-9ae4-62de5a602361";
 
 const company = {
   name: "Pavage Inter Cité",
@@ -13,7 +16,7 @@ const company = {
 const T = {
   fr: {
     nav: { services: "Services", realisations: "Réalisations", processus: "Processus", contact: "Contact" },
-    cta: { soumission: "Soumission gratuite", demander: "Demander une soumission", appeler: "Appeler maintenant", appelerCourt: "Appeler", envoyer: "Envoyer la demande" },
+    cta: { soumission: "Soumission gratuite", demander: "Demander une soumission", appeler: "Appeler maintenant", appelerCourt: "Appeler", envoyer: "Envoyer la demande", envoi: "Envoi en cours..." },
     hero: {
       tagline: ["Gatineau · Ottawa", "Résidentiel + Commercial"],
       titre: ["Pavage durable,", "finition propre,", "service local."],
@@ -72,12 +75,19 @@ const T = {
         options: ["Entrée résidentielle", "Stationnement commercial", "Réparation d’asphalte", "Scellant / fissures", "Autre projet"],
         message: "Message", messagePh: "Décrivez brièvement votre projet.",
       },
+      succes: {
+        tag: "Demande reçue",
+        titre: "Demande envoyée!",
+        texte: "Merci! On vous répond dans les plus brefs délais. Pour un besoin urgent, appelez-nous directement.",
+        bouton: "Envoyer une autre demande",
+      },
+      erreur: "Un problème est survenu lors de l'envoi. Réessayez, ou appelez-nous directement :",
     },
     footer: { coordonnees: "Coordonnées", liens: "Liens rapides" },
   },
   en: {
     nav: { services: "Services", realisations: "Our Work", processus: "Process", contact: "Contact" },
-    cta: { soumission: "Free quote", demander: "Request a free quote", appeler: "Call now", appelerCourt: "Call", envoyer: "Send request" },
+    cta: { soumission: "Free quote", demander: "Request a free quote", appeler: "Call now", appelerCourt: "Call", envoyer: "Send request", envoi: "Sending..." },
     hero: {
       tagline: ["Gatineau · Ottawa", "Residential + Commercial"],
       titre: ["Durable paving,", "clean finish,", "local service."],
@@ -136,6 +146,13 @@ const T = {
         options: ["Residential driveway", "Commercial parking lot", "Asphalt repair", "Sealant / cracks", "Other project"],
         message: "Message", messagePh: "Briefly describe your project.",
       },
+      succes: {
+        tag: "Request received",
+        titre: "Request sent!",
+        texte: "Thank you! We'll get back to you as soon as possible. For urgent needs, call us directly.",
+        bouton: "Send another request",
+      },
+      erreur: "Something went wrong. Try again, or call us directly:",
     },
     footer: { coordonnees: "Contact info", liens: "Quick links" },
   },
@@ -212,6 +229,7 @@ function GlobalStyles() {
         transition: clip-path 900ms cubic-bezier(0.22, 1, 0.36, 1) 150ms;
       }
       .rv-in .road-line { clip-path: inset(0 0 0 0); }
+      .road-line-static { clip-path: inset(0 0 0 0); }
 
       [data-reveal] {
         opacity: 0;
@@ -317,6 +335,13 @@ function GlobalStyles() {
         transform: translateY(-0.09em);
       }
 
+      @keyframes success-pop {
+        0% { transform: scale(0.6); opacity: 0; }
+        70% { transform: scale(1.08); }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .success-check { animation: success-pop 450ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
         [data-reveal] { opacity: 1; transform: none; transition: none; }
@@ -326,6 +351,7 @@ function GlobalStyles() {
         .photo-card:hover img { transform: none; }
         .cta-sheen::after { display: none; }
         .bracket-card::before, .bracket-card::after { transition: none; }
+        .success-check { animation: none; }
       }
     `}</style>
   );
@@ -362,6 +388,167 @@ function Logo() {
       alt="Pavage Inter Cité"
       className="h-20 max-w-[180px] w-auto object-contain md:h-16"
     />
+  );
+}
+
+/* ---------- Formulaire de soumission avec envoi réel ---------- */
+function QuoteForm({ t, isFr }: { t: (typeof T)["fr"] | (typeof T)["en"]; isFr: boolean }) {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    /* Anti-spam : si le champ caché est rempli, c'est un bot */
+    if (data.get("botcheck")) return;
+
+    data.append("access_key", WEB3FORMS_KEY);
+    data.append("subject", isFr ? "Nouvelle demande de soumission - Pavage Inter Cité" : "New quote request - Pavage Inter Cité");
+    data.append("from_name", "Site web Pavage Inter Cité");
+
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+      const json = await res.json();
+      if (json.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div
+        className="flex min-h-[560px] flex-col items-center justify-center border border-[var(--line)] bg-white p-8 text-center text-zinc-950 shadow-2xl md:p-12"
+        role="status"
+      >
+        <div className="success-check flex h-16 w-16 items-center justify-center bg-[var(--safety)]">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 13l4 4L19 7" stroke="black" strokeWidth="3" strokeLinecap="square" />
+          </svg>
+        </div>
+        <p className="font-mono-tech mt-6 text-xs font-semibold text-[var(--safety)]">{t.soumission.succes.tag}</p>
+        <h3 className="font-display mt-2 text-4xl font-bold text-zinc-950">{t.soumission.succes.titre}</h3>
+        <div className="road-line road-line-static mx-auto" aria-hidden="true" />
+        <p className="mt-6 max-w-md leading-7 text-zinc-600">{t.soumission.succes.texte}</p>
+        <a
+          href={company.phoneHref}
+          className="font-display mt-4 text-lg font-bold text-[var(--safety)] transition-colors duration-200 hover:text-[var(--safety-hot)]"
+        >
+          {company.phone}
+        </a>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-8 border border-zinc-300 px-6 py-3 font-display text-sm font-bold tracking-wider text-zinc-700 transition-colors duration-200 hover:border-[var(--safety)] hover:text-[var(--safety)]"
+        >
+          {t.soumission.succes.bouton}
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="border border-[var(--line)] bg-white p-4 text-zinc-950 shadow-2xl md:p-8"
+    >
+      {/* Champ anti-spam invisible */}
+      <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <label className="block">
+          <span className="mb-2 block text-sm font-bold">{t.soumission.form.nom}</span>
+          <input
+            name="nom"
+            required
+            className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
+            placeholder={t.soumission.form.nomPh}
+          />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-sm font-bold">{t.soumission.form.tel}</span>
+          <input
+            name="telephone"
+            type="tel"
+            required
+            className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
+            placeholder={t.soumission.form.telPh}
+          />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-sm font-bold">{t.soumission.form.email}</span>
+          <input
+            name="email"
+            type="email"
+            className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
+            placeholder={t.soumission.form.emailPh}
+          />
+        </label>
+        <label className="block">
+          <span className="mb-2 block text-sm font-bold">{t.soumission.form.ville}</span>
+          <input
+            name="ville"
+            className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
+            placeholder={t.soumission.form.villePh}
+          />
+        </label>
+        <label className="block md:col-span-2">
+          <span className="mb-2 block text-sm font-bold">{t.soumission.form.type}</span>
+          <div className="relative">
+            <select
+              name="type"
+              className="w-full appearance-none border border-zinc-200 bg-zinc-50 px-4 py-4 pr-12 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
+            >
+              {t.soumission.form.options.map((opt) => (
+                <option key={opt}>{opt}</option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-black">▼</div>
+          </div>
+        </label>
+        <label className="block md:col-span-2">
+          <span className="mb-2 block text-sm font-bold">{t.soumission.form.message}</span>
+          <textarea
+            name="message"
+            className="min-h-32 w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
+            placeholder={t.soumission.form.messagePh}
+          />
+        </label>
+      </div>
+
+      {status === "error" && (
+        <div role="alert" className="mt-5 border border-red-300 bg-red-50 p-4 text-sm text-red-800">
+          {t.soumission.erreur}{" "}
+          <a href={company.phoneHref} className="font-bold underline">
+            {company.phone}
+          </a>
+        </div>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="cta-sheen mt-5 w-full bg-[var(--safety)] px-6 py-4 font-display text-sm font-bold tracking-wider text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--safety-hot)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+      >
+        {status === "sending" ? (
+          t.cta.envoi
+        ) : (
+          <>
+            {t.cta.envoyer} <span className="cta-arrow">→</span>
+          </>
+        )}
+      </button>
+    </form>
   );
 }
 
@@ -704,74 +891,9 @@ export default function Site({ lang = "fr" }: { lang?: "fr" | "en" }) {
               </div>
             </div>
 
-            <form
-              data-reveal
-              data-reveal-delay="1"
-              className="border border-[var(--line)] bg-white p-4 text-zinc-950 shadow-2xl md:p-8"
-            >
-              <div className="grid gap-4 md:grid-cols-2">
-                <label className="block">
-                  <span className="mb-2 block text-sm font-bold">{t.soumission.form.nom}</span>
-                  <input
-                    name="nom"
-                    className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
-                    placeholder={t.soumission.form.nomPh}
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-2 block text-sm font-bold">{t.soumission.form.tel}</span>
-                  <input
-                    name="telephone"
-                    className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
-                    placeholder={t.soumission.form.telPh}
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-2 block text-sm font-bold">{t.soumission.form.email}</span>
-                  <input
-                    name="email"
-                    className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
-                    placeholder={t.soumission.form.emailPh}
-                  />
-                </label>
-                <label className="block">
-                  <span className="mb-2 block text-sm font-bold">{t.soumission.form.ville}</span>
-                  <input
-                    name="ville"
-                    className="w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
-                    placeholder={t.soumission.form.villePh}
-                  />
-                </label>
-                <label className="block md:col-span-2">
-                  <span className="mb-2 block text-sm font-bold">{t.soumission.form.type}</span>
-                  <div className="relative">
-                    <select
-                      name="type"
-                      className="w-full appearance-none border border-zinc-200 bg-zinc-50 px-4 py-4 pr-12 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
-                    >
-                      {t.soumission.form.options.map((opt) => (
-                        <option key={opt}>{opt}</option>
-                      ))}
-                    </select>
-                    <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-black">▼</div>
-                  </div>
-                </label>
-                <label className="block md:col-span-2">
-                  <span className="mb-2 block text-sm font-bold">{t.soumission.form.message}</span>
-                  <textarea
-                    name="message"
-                    className="min-h-32 w-full border border-zinc-200 bg-zinc-50 px-4 py-4 outline-none transition-colors duration-200 focus:border-[var(--safety)]"
-                    placeholder={t.soumission.form.messagePh}
-                  />
-                </label>
-              </div>
-              <button
-                type="button"
-                className="cta-sheen mt-5 w-full bg-[var(--safety)] px-6 py-4 font-display text-sm font-bold tracking-wider text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--safety-hot)]"
-              >
-                {t.cta.envoyer} <span className="cta-arrow">→</span>
-              </button>
-            </form>
+            <div data-reveal data-reveal-delay="1">
+              <QuoteForm t={t} isFr={isFr} />
+            </div>
           </div>
         </section>
       </main>
