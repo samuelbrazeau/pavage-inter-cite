@@ -125,7 +125,7 @@ const T = {
       eyebrow: "Process",
       titre: "Simple from first call to final result",
       etapes: [
-        { titre: "Quick contact", texte: "Call us or fill out the form, we reply within 24 hours." },
+        { titre: "Quick contact", texte: "Call us or fill out the form, we reply as soon as possible." },
         { titre: "Free assessment", texte: "We visit your site to assess the project, no cost, no commitment." },
         { titre: "Detailed quote", texte: "You get a firm written price, no surprises, no hidden fees." },
         { titre: "Work completed", texte: "Our crew completes the work on the agreed date with professional equipment." },
