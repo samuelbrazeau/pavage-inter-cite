@@ -54,7 +54,7 @@ const T = {
       eyebrow: "Processus",
       titre: "Simple du premier appel au résultat final",
       etapes: [
-        { titre: "Contact rapide", texte: "Appelez-nous ou remplissez le formulaire, on vous répond dans les 24 heures." },
+        { titre: "Contact rapide", texte: "Appelez-nous ou remplissez le formulaire, on vous répond dans les plus brefs délais." },
         { titre: "Évaluation gratuite", texte: "On se déplace sur place pour évaluer votre projet, sans frais ni engagement." },
         { titre: "Soumission détaillée", texte: "Vous recevez un prix ferme par écrit, sans surprise ni frais cachés." },
         { titre: "Réalisation des travaux", texte: "Notre équipe exécute les travaux à la date convenue, avec de l'équipement professionnel." },
